@@ -1,48 +1,54 @@
 class MyMath {
-  static generateFibo(max) {
-    //формирование числа Фибоначчи
+  static getFiboNum(n) {
+    // вычисление N-го числа в ряду Фибоначчи
     const fibo = [0, 1];
-    for (let i = 0; i <= max; i++) {
-      fibo.push(fibo[i] + fibo[i + 1]);
+    for (let i = 2; i <= n; i++) {
+      fibo[i] = fibo[i - 1] + fibo[i - 2];
     }
-    return fibo;
+    return fibo[n];
   }
 
-  static generatePrime(max) {
-    // формирование массива простых чисел
+  static getFiboNumbers(n) {
+    // вычисление всех чисел в ряду Фибоначчи до числа N
+    const fibo = [0, 1];
+    for (let i = 2; i <= n; i++) {
+      fibo[i] = fibo[i - 1] + fibo[i - 2];
+    }
+    return fibo.slice(0, n);
+  }
+
+  static getPrimeNum(n) {
+    // вычисление N-го просто числа (по индексу)
     const primes = [];
-    for (let i = 2; i <= max; i++) {
-      let isPrime = true;
-      for (let j = 2; j * j <= i; j++) {
-        // проверяются только те потенциальные делители, квадрат которых меньше делимого
-        if (i % j === 0) {
-          isPrime = false;
-          break; // добавлен break для оптимизации
-        }
+    for (let i = 2; primes.length < n; i++) {
+      if (this.isPrime(i)) {
+        primes.push(i);
       }
-      if (isPrime) {
+    }
+    return primes[n - 1];
+  }
+
+  static getPrimeNumbers(n) {
+    // вычисление всех простых чисел до числа N
+    const primes = [];
+    for (let i = 2; i <= n; i++) {
+      if (this.isPrime(i)) {
         primes.push(i);
       }
     }
     return primes;
   }
 
-  static getFuboNum(num, max) {
-    //вычисление N-го числа в ряду Фибоначчи
-    const fibo = this.generateFibo(max);
-    console.log(fibo[num]);
-  }
-  static getAllFibo(num, max) {
-    //вычисление всех чисел в ряду Фибоначчи до числа N
-    const fibo = this.generateFibo(max);
-    const slisedFibo = fibo.slice(0, num - 1);
-    console.log(slisedFibo);
-  }
-
-  static getPrimeNum(num, max) {
-    const primes = this.generatePrime(max);
-    console.log(primes[num]);
+  static isPrime(num) {
+    if (num <= 1) return false;
+    for (let i = 2; i * i <= num; i++) {
+      if (num % i === 0) return false;
+    }
+    return true;
   }
 }
 
-MyMath.getPrimeNum(7, 20);
+console.log(MyMath.getFiboNum(7)); // 13
+console.log(MyMath.getFiboNumbers(7)); // [0, 1, 1, 2, 3, 5, 8]
+console.log(MyMath.getPrimeNum(7)); // 17
+console.log(MyMath.getPrimeNumbers(20)); // [2, 3, 5, 7, 11, 13, 17, 19]
