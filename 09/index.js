@@ -19,3 +19,4 @@ const jsonToString = (json) => {
 };
 
 jsonToString(jsonData);
+//  name,Анна,age,25,5,1234
