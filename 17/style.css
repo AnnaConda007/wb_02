@@ -1,0 +1,43 @@
+html,
+body {
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+}
+main {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 20px;
+}
+
+.geo-container {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(246, 246, 248);
+  width: 300px;
+  height: auto;
+  align-items: center;
+}
+.label-geo {
+  width: 90%;
+}
+.geo-input {
+  width: 100%;
+}
+.geo-list {
+  list-style-type: none;
+  padding-left: 10px;
+}
+
+.geo-list-item {
+  padding-bottom: 10px;
+}
+
+.geo-list-item:hover {
+  background-color: rgb(229, 243, 237);
+}
+
+.geo-list-item:active {
+  background-color: rgb(213, 241, 229);
+}
