@@ -1,7 +1,28 @@
 const API_KEY = "1aeb6115-3940-407e-9824-d7c4d0570da3";
 const input = document.querySelector(".geo-input");
 const geoList = document.querySelector(".geo-list");
-const listItem = document.querySelector(".geo-list-item");
+
+const debounce = (func, interval) => {
+  let timeoutId;
+  return (...args) => {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, interval);
+  };
+};
+
+const throttle = (func, limit) => {
+  let inThrottle;
+  return (...args) => {
+    if (inThrottle) return;
+    func.apply(this, args);
+    inThrottle = true;
+    setTimeout(() => (inThrottle = false), limit);
+  };
+};
 
 const getGeo = async (address) => {
   geoList.innerHTML = "";
@@ -29,9 +50,16 @@ const getGeo = async (address) => {
   }
 };
 
-input.addEventListener("input", (e) => {
+const debouncedFunc = debounce((e) => {
   getGeo(e.target.value);
-});
+}, 300);
+input.addEventListener("input", debouncedFunc);
+
+/*input.addEventListener("input", throttle((e) => {
+    getGeo(e.target.value);
+}, 300)); 
+*/
+
 input.addEventListener("click", (e) => {
   input.value = "";
 });
