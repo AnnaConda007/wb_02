@@ -1,16 +1,16 @@
-const localStorigSize = 5 * 1024 * 1024 * 8; // 5 мегабайтов переведены в байты
+// эта функция выдет примерный результат, нет 100% точности результата.
+//Поэтому результат может отличаться от размеров, уазнных в документации браузера
+const maxLocalSize = () => {
+  let i = 0;
+  let testKey = "testValue";
+  try {
+    for (i = 0; ; i++) {
+      localStorage.setItem(testKey + i, new Array(1024 * 1024).join("a"));
+    }
+  } catch (e) {
+    localStorage.clear();
+    return i;
+  }
+};
 
-const allLocalVaue = [];
-for (let i = 0; i < localStorage.length; i++) {
-  const string = new TextEncoder().encode(
-    localStorage.getItem(localStorage.key(i))
-  );
-  const stringWeight = string.reduce((acc, curent) => acc + curent, 0);
-  allLocalVaue[i] = stringWeight;
-}
-const totalWeight = allLocalVaue.reduce((acc, curent) => acc + curent, 0);
-
-const remain = (localStorigSize - totalWeight) / 8 / 1024 / 1024;
-console.log( "в LocalStorige доступно" ,Math.floor(remain * 10) / 10, "мегабайт");
-
-
+console.log(maxLocalSize() + " мегабайт доступно в вашем localStorage");
