@@ -1,0 +1,13 @@
+div {
+  width: 100px;
+  height: 100px;
+  background-color: antiquewhite;
+  transition: all 0.5s ease-in-out;  
+}
+
+.animated {
+  width: 50px;
+  height: 50px;
+  transform: rotate(360deg);
+ 
+}
