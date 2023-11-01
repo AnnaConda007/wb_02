@@ -1,13 +1,24 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(178, 220, 220);
+}
 div {
   width: 100px;
   height: 100px;
   background-color: antiquewhite;
-  transition: all 0.5s ease-in-out;  
+  transition: all 0.5s;
 }
 
 .animated {
   width: 50px;
   height: 50px;
+  background-color: rgb(241, 203, 239);
   transform: rotate(360deg);
- 
 }

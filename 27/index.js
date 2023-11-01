@@ -1,13 +1,9 @@
 const div = document.querySelector("div");
 
-setInterval(function () {
+setInterval(() => {
   if (div.classList.contains("animated")) {
     div.classList.remove("animated");
   } else {
     div.classList.add("animated");
   }
-
-  animateMargin();
-}, 1000);
-
- 
+}, 500);
